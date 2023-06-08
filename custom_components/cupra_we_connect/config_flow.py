@@ -23,7 +23,7 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
     {
         vol.Required("username"): str,
         vol.Required("password"): str,
-        vol.Required("service", default='WeConnect'): selector({
+        vol.Required("service", default='MyCupra'): selector({
             "select": {
                 "options": ["MyCupra"]
             }
