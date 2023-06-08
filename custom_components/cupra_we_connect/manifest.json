@@ -1,0 +1,14 @@
+{
+  "domain": "cupra_we_connect",
+  "name": "Cupra WeConnect",
+  "config_flow": true,
+  "documentation": "https://github.com/daernsinstantfortress/cupra_we_connect",
+  "requirements": ["weconnect-cupra-daern==0.50.2", "ascii_magic==1.6"],
+  "ssdp": [],
+  "zeroconf": [],
+  "homekit": {},
+  "dependencies": [],
+  "codeowners": ["@daernsinstantfortress"],
+  "iot_class": "cloud_polling",
+  "version": "0.1"
+}
