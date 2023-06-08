@@ -14,7 +14,7 @@ Platform | Description
 `sensor` | Show information from your Cupra Born car.
 `button` | Start climatization in your Cupra Born car.
 
-![image](https://user-images.githubusercontent.com/15835274/149675681-a0c6804c-3179-4fd3-ad74-ab489c8986dd.png)
+![image](Example.png)
 
 
 ## Installation
