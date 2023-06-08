@@ -1,10 +1,9 @@
-# WeConnect-Cupra-python
+# Cupra WeConnect Home Assistant Integration
 [![GitHub sourcecode](https://img.shields.io/badge/Source-GitHub-green)](https://github.com/daernsinstantfortress/cupra_we_connect)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/daernsinstantfortress/cupra_we_connect)](https://github.com/daernsinstantfortress/cupra_we_connect/releases/latest)
 [![GitHub](https://img.shields.io/github/license/daernsinstantfortress/cupra_we_connect)](https://github.com/daernsinstantfortress/cupra_we_connect/blob/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/daernsinstantfortress/cupra_we_connect)](https://github.com/daernsinstantfortress/cupra_we_connect/issues)
 
-# Cupra We Connect
 _Cupra We Connect ID sensor provides statistics from the Cupra ID Api thru [WeConnect-Cupra-python lib](https://pypi.org/project/weconnect-cupra-daern/)._
 
 **This component will set up the following platforms.**
