@@ -1,3 +1,3 @@
-"""Constants for the Volkswagen We Connect ID integration."""
+"""Constants for the Cupra We Connect integration."""
 
-DOMAIN = cupra_we_connect
+DOMAIN = "cupra_we_connect"
