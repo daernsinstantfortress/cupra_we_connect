@@ -10,5 +10,6 @@
   "dependencies": [],
   "codeowners": ["@daernsinstantfortress"],
   "iot_class": "cloud_polling",
-  "version": "0.2"
+  "version": "0.3",
+  "issue_tracker": "https://github.com/daernsinstantfortress/cupra_we_connect/issues"
 }
