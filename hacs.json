@@ -1,0 +1,6 @@
+{
+    "name": "Cupra WeConnect",
+    "content_in_root": false,
+    "render_readme": true,
+    "homeassistant": "2022.7.0"
+}
