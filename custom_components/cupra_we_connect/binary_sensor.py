@@ -8,6 +8,8 @@ from weconnect_cupra import weconnect_cupra
 from weconnect_cupra.elements.plug_status import PlugStatus
 from weconnect_cupra.elements.window_heating_status import WindowHeatingStatus
 from weconnect_cupra.elements.access_control_state import AccessControlState
+from weconnect_cupra.elements.connection_state import ConnectionState
+
 
 from homeassistant.components.binary_sensor import (
     BinarySensorDeviceClass,
@@ -112,10 +114,9 @@ SENSORS: tuple[VolkswagenIdBinaryEntityDescription, ...] = (
     VolkswagenIdBinaryEntityDescription(
         name="Car Is Online",
         key="isOnline",
-        value=lambda data: data["readiness"][
-            "readinessStatus"
-        ].connectionState.isOnline.value,
+        value=lambda data: data["status"]["connectionStatus"].connectionState.value,
         device_class=BinarySensorDeviceClass.CONNECTIVITY,
+        on_value=ConnectionState.ConnectionState.ONLINE
     ),
     VolkswagenIdBinaryEntityDescription(
         name="Car Is Active",
@@ -295,11 +296,6 @@ SENSORS: tuple[VolkswagenIdBinaryEntityDescription, ...] = (
         value=lambda data: data["access"]["accessStatus"].lightsStatus.value,
         on_value=AccessControlState.LightsState.ON,
     ),
-
-
-
-
-
 )
 
 
