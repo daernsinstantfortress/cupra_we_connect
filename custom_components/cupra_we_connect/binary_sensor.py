@@ -131,7 +131,7 @@ SENSORS: tuple[VolkswagenIdBinaryEntityDescription, ...] = (
         icon="mdi:car-door-lock",
         device_class=BinarySensorDeviceClass.LOCK,
         value=lambda data: data["access"]["accessStatus"].doorLockStatus.value,
-        on_value=AccessControlState.OverallState.UNSAFE,
+        on_value=AccessControlState.LockState.UNLOCKED,
     ),
     VolkswagenIdBinaryEntityDescription(
         key="trunkLockStatus",
