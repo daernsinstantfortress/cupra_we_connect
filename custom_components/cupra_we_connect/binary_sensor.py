@@ -116,7 +116,7 @@ SENSORS: tuple[VolkswagenIdBinaryEntityDescription, ...] = (
         key="isOnline",
         value=lambda data: data["status"]["connectionStatus"].connectionState.value,
         device_class=BinarySensorDeviceClass.CONNECTIVITY,
-        on_value=ConnectionState.ConnectionState.ONLINE,
+        on_value=ConnectionState.ConnectionState.ONLINE
     ),
     VolkswagenIdBinaryEntityDescription(
         name="Car Is Active",
@@ -131,7 +131,7 @@ SENSORS: tuple[VolkswagenIdBinaryEntityDescription, ...] = (
         icon="mdi:car-door-lock",
         device_class=BinarySensorDeviceClass.LOCK,
         value=lambda data: data["access"]["accessStatus"].doorLockStatus.value,
-        on_value=AccessControlState.OverallState.UNSAFE,
+        on_value=AccessControlState.LockState.UNLOCKED,
     ),
     VolkswagenIdBinaryEntityDescription(
         key="trunkLockStatus",
