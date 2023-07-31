@@ -116,7 +116,7 @@ SENSORS: tuple[VolkswagenIdBinaryEntityDescription, ...] = (
         key="isOnline",
         value=lambda data: data["status"]["connectionStatus"].connectionState.value,
         device_class=BinarySensorDeviceClass.CONNECTIVITY,
-        on_value=ConnectionState.ConnectionState.ONLINE
+        on_value=ConnectionState.ConnectionState.ONLINE,
     ),
     VolkswagenIdBinaryEntityDescription(
         name="Car Is Active",
@@ -131,7 +131,7 @@ SENSORS: tuple[VolkswagenIdBinaryEntityDescription, ...] = (
         icon="mdi:car-door-lock",
         device_class=BinarySensorDeviceClass.LOCK,
         value=lambda data: data["access"]["accessStatus"].doorLockStatus.value,
-        on_value=AccessControlState.LockState.UNLOCKED,
+        on_value=AccessControlState.OverallState.UNSAFE,
     ),
     VolkswagenIdBinaryEntityDescription(
         key="trunkLockStatus",
@@ -141,6 +141,14 @@ SENSORS: tuple[VolkswagenIdBinaryEntityDescription, ...] = (
         value=lambda data: data["access"]["accessStatus"]
         .doors["trunk"]
         .lockState.value,
+        on_value=AccessControlState.LockState.UNLOCKED,
+    ),
+    VolkswagenIdBinaryEntityDescription(
+        key="hoodLockStatus",
+        name="Hood Lock Status",
+        icon="mdi:lock-outline",
+        device_class=BinarySensorDeviceClass.LOCK,
+        value=lambda data: data["access"]["accessStatus"].doors["hood"].lockState.value,
         on_value=AccessControlState.LockState.UNLOCKED,
     ),
     VolkswagenIdBinaryEntityDescription(
@@ -190,6 +198,13 @@ SENSORS: tuple[VolkswagenIdBinaryEntityDescription, ...] = (
         value=lambda data: data["access"]["accessStatus"]
         .doors["trunk"]
         .openState.value,
+        on_value=AccessControlState.OpenState.OPEN,
+    ),
+    VolkswagenIdBinaryEntityDescription(
+        key="hoodOpenStatus",
+        name="Hood Open Status",
+        device_class=BinarySensorDeviceClass.DOOR,
+        value=lambda data: data["access"]["accessStatus"].doors["hood"].openState.value,
         on_value=AccessControlState.OpenState.OPEN,
     ),
     VolkswagenIdBinaryEntityDescription(
@@ -340,12 +355,12 @@ class VolkswagenIDSensor(VolkswagenIDBaseEntity, BinarySensorEntity):
     def is_on(self) -> bool:
         """Return true if sensor is on."""
         try:
-          state = self.entity_description.value(self.data.domains)
-          if isinstance(state, bool):
-              return state
+            state = self.entity_description.value(self.data.domains)
+            if isinstance(state, bool):
+                return state
 
-          state = get_object_value(state)
-          return state == get_object_value(self.entity_description.on_value)
+            state = get_object_value(state)
+            return state == get_object_value(self.entity_description.on_value)
 
         except KeyError:
-          return None
+            return None
