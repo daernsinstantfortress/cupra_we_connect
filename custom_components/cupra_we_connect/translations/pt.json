@@ -1,0 +1,21 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Equipamento já confiugrado"
+        },
+        "error": {
+            "cannot_connect": "Falha na ligação",
+            "invalid_auth": "Falha na Autenticação ",
+            "unknown": "Erro desconhecido"
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Endereço",
+                    "password": "Senha",
+                    "username": "Utilizador"
+                }
+            }
+        }
+    }
+}
