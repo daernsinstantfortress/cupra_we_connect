@@ -80,14 +80,14 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
         ].targetTemperature_F.value,
     ),
     # Not available from Cupra
-    VolkswagenIdEntityDescription(
-        key="unitInCar",
-        name="Unit In car",
-        state_class=None,
-        value=lambda data: data["climatisation"][
-            "climatisationSettings"
-        ].unitInCar.value,
-    ),
+    # VolkswagenIdEntityDescription(
+    #     key="unitInCar",
+    #     name="Unit In car",
+    #     state_class=None,
+    #     value=lambda data: data["climatisation"][
+    #         "climatisationSettings"
+    #     ].unitInCar.value,
+    # ),
     # This is a string, not an number
     VolkswagenIdEntityDescription(
         key="chargingState",
@@ -186,15 +186,15 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
         ].cruisingRangeElectric_km.value,
     ),
     # Not supported by Cupra
-    VolkswagenIdEntityDescription(
-        name="Health Inspection",
-        key="inspectionDue",
-        native_unit_of_measurement=TIME_DAYS,
-        state_class=SensorStateClass.MEASUREMENT,
-        value=lambda data: data["vehicleHealthInspection"][
-            "maintenanceStatus"
-        ].inspectionDue_days.value if "vehicleHealthInspection" in data else None,
-    ),
+    # VolkswagenIdEntityDescription(
+    #     name="Health Inspection",
+    #     key="inspectionDue",
+    #     native_unit_of_measurement=TIME_DAYS,
+    #     state_class=SensorStateClass.MEASUREMENT,
+    #     value=lambda data: data["vehicleHealthInspection"][
+    #         "maintenanceStatus"
+    #     ].inspectionDue_days.value if "vehicleHealthInspection" in data else None,
+    # ),
     VolkswagenIdEntityDescription(
         name="Odometer in Kilometers",
         key="odometer_km",

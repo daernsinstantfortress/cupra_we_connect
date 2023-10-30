@@ -104,13 +104,14 @@ SENSORS: tuple[VolkswagenIdBinaryEntityDescription, ...] = (
         device_class=BinarySensorDeviceClass.LOCK,
         on_value=PlugStatus.PlugLockState.UNLOCKED,
     ),
-    VolkswagenIdBinaryEntityDescription(
-        key="insufficientBatteryLevelWarning",
-        name="Insufficient Battery Level Warning",
-        value=lambda data: data["readiness"][
-            "readinessStatus"
-        ].connectionWarning.insufficientBatteryLevelWarning.value,
-    ),
+    # Not available from Cupra
+    # VolkswagenIdBinaryEntityDescription(
+    #     key="insufficientBatteryLevelWarning",
+    #     name="Insufficient Battery Level Warning",
+    #     value=lambda data: data["readiness"][
+    #         "readinessStatus"
+    #     ].connectionWarning.insufficientBatteryLevelWarning.value,
+    # ),
     VolkswagenIdBinaryEntityDescription(
         name="Car Is Online",
         key="isOnline",
@@ -118,13 +119,14 @@ SENSORS: tuple[VolkswagenIdBinaryEntityDescription, ...] = (
         device_class=BinarySensorDeviceClass.CONNECTIVITY,
         on_value=ConnectionState.ConnectionState.ONLINE
     ),
-    VolkswagenIdBinaryEntityDescription(
-        name="Car Is Active",
-        key="isActive",
-        value=lambda data: data["readiness"][
-            "readinessStatus"
-        ].connectionState.isActive.value,
-    ),
+    # Not available from Cupra
+    # VolkswagenIdBinaryEntityDescription(
+    #     name="Car Is Active",
+    #     key="isActive",
+    #     value=lambda data: data["readiness"][
+    #         "readinessStatus"
+    #     ].connectionState.isActive.value,
+    # ),
     VolkswagenIdBinaryEntityDescription(
         key="doorLockStatus",
         name="Door Lock Status",
