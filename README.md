@@ -23,6 +23,7 @@ If you were previously running the test version based on [the VW WeConnect ID](h
 
 ### HACS
 The easiest way to add this to your Homeassistant installation is using [HACS](https://hacs.xyz/) and install the "Cupra WeConnect" integration. Once done, follow the instructions under [Configuration](#configuration) below to set it up.
+
 (If the integration doesn't appear, you can manually add https://github.com/daernsinstantfortress/cupra_we_connect as a custom repository. Once done, you can search for "Cupra" and the integration should show up in HACS, allowing installation.)
 
 ### Manual
