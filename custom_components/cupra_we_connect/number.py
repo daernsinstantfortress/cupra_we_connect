@@ -15,7 +15,7 @@ from . import (
 )
 from .const import DOMAIN
 
-from homeassistant.const import TEMP_CELSIUS
+from homeassistant.const import UnitOfTemperature
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Add buttons for passed config_entry in HA."""
@@ -97,7 +97,7 @@ class TargetClimateNumber(VolkswagenIDBaseEntity, NumberEntity):
         self._attr_native_min_value = 10
         self._attr_native_max_value = 30
         self._attr_native_step = 0.5
-        self._attr_native_unit_of_measurement = TEMP_CELSIUS
+        self._attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
 
     @property
     def native_value(self) -> float | None:
