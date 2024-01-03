@@ -11,20 +11,26 @@ from homeassistant.components.sensor import (
     SensorEntity,
     SensorEntityDescription,
     SensorStateClass,
+    SensorDeviceClass,
 )
 from homeassistant.const import (
-    DEVICE_CLASS_BATTERY,
-    DEVICE_CLASS_POWER,
-    DEVICE_CLASS_TEMPERATURE,
-    LENGTH_KILOMETERS,
-    LENGTH_MILES,
+#     DEVICE_CLASS_BATTERY,
+#     DEVICE_CLASS_POWER,
+#     DEVICE_CLASS_TEMPERATURE,
+#     LENGTH_KILOMETERS,
+#     LENGTH_MILES,
     PERCENTAGE,
-    POWER_KILO_WATT,
-    SPEED_KILOMETERS_PER_HOUR,
-    TEMP_CELSIUS,
-    TEMP_FAHRENHEIT,
-    TIME_DAYS,
-    TIME_MINUTES,
+#     POWER_KILO_WATT,
+#     SPEED_KILOMETERS_PER_HOUR,
+#     TEMP_CELSIUS,
+#     TEMP_FAHRENHEIT,
+#     TIME_DAYS,
+#     TIME_MINUTES,
+    UnitOfLength,
+    UnitOfPower,
+    UnitOfTime,
+    UnitOfTemperature,
+    UnitOfSpeed,
 )
 from homeassistant.helpers.typing import StateType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
@@ -53,7 +59,7 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
     VolkswagenIdEntityDescription(
         key="remainingClimatisationTime_min",
         name="Remaining Climatisation Time",
-        native_unit_of_measurement=TIME_MINUTES,
+        native_unit_of_measurement=UnitOfTime.MINUTES,
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["climatisation"][
             "climatisationStatus"
@@ -62,8 +68,8 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
     VolkswagenIdEntityDescription(
         key="targetTemperature_C",
         name="Target Temperature C",
-        device_class=DEVICE_CLASS_TEMPERATURE,
-        native_unit_of_measurement=TEMP_CELSIUS,
+        device_class=SensorDeviceClass.TEMPERATURE,
+        native_unit_of_measurement=UnitOfTemperature.CELSIUS,
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["climatisation"][
             "climatisationSettings"
@@ -72,8 +78,8 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
     VolkswagenIdEntityDescription(
         key="targetTemperature_F",
         name="Target Temperature F",
-        device_class=DEVICE_CLASS_TEMPERATURE,
-        native_unit_of_measurement=TEMP_FAHRENHEIT,
+        device_class=SensorDeviceClass.TEMPERATURE,
+        native_unit_of_measurement=UnitOfTemperature.FAHRENHEIT,
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["climatisation"][
             "climatisationSettings"
@@ -99,7 +105,7 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
     VolkswagenIdEntityDescription(
         key="remainingChargingTimeToComplete_min",
         name="Remaining Charging Time",
-        native_unit_of_measurement=TIME_MINUTES,
+        native_unit_of_measurement=UnitOfTime.MINUTES,
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["charging"][
             "chargingStatus"
@@ -116,15 +122,15 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
     VolkswagenIdEntityDescription(
         key="chargePower_kW",
         name="Charge Power",
-        native_unit_of_measurement=POWER_KILO_WATT,
-        device_class=DEVICE_CLASS_POWER,
+        native_unit_of_measurement=UnitOfPower.KILO_WATT,
+        device_class=SensorDeviceClass.POWER,
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["charging"]["chargingStatus"].chargePower_kW.value,
     ),
     VolkswagenIdEntityDescription(
         key="chargeRate_kmph",
         name="Charge Rate",
-        native_unit_of_measurement=SPEED_KILOMETERS_PER_HOUR,
+        native_unit_of_measurement=UnitOfSpeed.KILOMETERS_PER_HOUR,
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["charging"]["chargingStatus"].chargeRate_kmph.value,
     ),
@@ -154,7 +160,7 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
     VolkswagenIdEntityDescription(
         key="targetSOC_pct",
         name="Target State of Charge",
-        device_class=DEVICE_CLASS_BATTERY,
+        device_class=SensorDeviceClass.BATTERY,
         native_unit_of_measurement=PERCENTAGE,
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["charging"]["chargingSettings"].targetSOC_pct.value,
@@ -162,7 +168,7 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
     VolkswagenIdEntityDescription(
         key="currentSOC_pct",
         name="State of Charge",
-        device_class=DEVICE_CLASS_BATTERY,
+        device_class=SensorDeviceClass.BATTERY,
         native_unit_of_measurement=PERCENTAGE,
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["charging"]["batteryStatus"].currentSOC_pct.value,
@@ -170,7 +176,7 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
     VolkswagenIdEntityDescription(
         name="Range in Kilometers",
         key="cruisingRangeElectric_km",
-        native_unit_of_measurement=LENGTH_KILOMETERS,
+        native_unit_of_measurement=UnitOfLength.KILOMETERS,
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["charging"][
             "batteryStatus"
@@ -179,7 +185,7 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
     VolkswagenIdEntityDescription(
         name="Range in Miles",
         key="cruisingRangeElectric_mi",
-        native_unit_of_measurement=LENGTH_MILES,
+        native_unit_of_measurement=UnitOfLength.MILES,
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["charging"][
             "batteryStatus"
@@ -198,7 +204,7 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
     VolkswagenIdEntityDescription(
         name="Odometer in Kilometers",
         key="odometer_km",
-        native_unit_of_measurement=LENGTH_KILOMETERS,
+        native_unit_of_measurement=UnitOfLength.KILOMETERS,
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["measurements"][
             "odometerStatus"
@@ -207,7 +213,7 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
     VolkswagenIdEntityDescription(
         name="Odometer in Miles",
         key="odometer_mi",
-        native_unit_of_measurement=LENGTH_MILES,
+        native_unit_of_measurement=UnitOfLength.MILES,
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["measurements"][
             "odometerStatus"
