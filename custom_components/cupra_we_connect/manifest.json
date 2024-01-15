@@ -10,6 +10,6 @@
   "issue_tracker": "https://github.com/daernsinstantfortress/cupra_we_connect/issues",
   "requirements": ["weconnect-cupra-daern==0.50.8", "ascii_magic==2.1.1"],
   "ssdp": [],
-  "version": "0.8.0b2",
+  "version": "0.8.0",
   "zeroconf": []
 }
