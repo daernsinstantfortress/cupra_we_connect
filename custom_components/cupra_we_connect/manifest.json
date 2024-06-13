@@ -8,8 +8,8 @@
   "homekit": {},
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/daernsinstantfortress/cupra_we_connect/issues",
-  "requirements": ["weconnect-cupra-daern==0.50.9", "ascii_magic==2.1.1"],
+  "requirements": ["weconnect-cupra-daern==0.50.10", "ascii_magic==2.1.1"],
   "ssdp": [],
-  "version": "0.8.1",
+  "version": "0.8.2",
   "zeroconf": []
 }
