@@ -39,11 +39,11 @@ SENSORS: tuple[VolkswagenIdBinaryEntityDescription, ...] = (
         ].climatisationWithoutExternalPower.value,
     ),
     VolkswagenIdBinaryEntityDescription(
-        key="climatizationAtUnlock",
+        key="climatisationAtUnlock",
         name="Climatisation At Unlock",
         value=lambda data: data["climatisation"][
             "climatisationSettings"
-        ].climatizationAtUnlock.value,
+        ].climatisationAtUnlock.value,
     ),
     VolkswagenIdBinaryEntityDescription(
         key="zoneFrontLeftEnabled",
