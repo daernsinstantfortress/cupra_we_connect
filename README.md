@@ -49,6 +49,23 @@ custom_components/cupra_we_connect/sensor.py
 It's important that you first use the app, connect the app to the car and use it at least once. 
 After that enable the integration on the integration page in Home Assistant with your e-mail and password that you use to login into the app. Wait a couple of seconds and 1 or more devices (your cars) with entities will show up. 
 
+## Authentication Failures
+
+It's important that the username being used to login to this integration has already accepted all of the T&Cs from Cupra. If not, the integration will fail to load with various errors in the logs. The easiest way to do this is as follows:
+
+1. Log in at https://cupraid.vwgroup.io/account
+2. Accept any T&Cs prompted
+3. Once at the user profile screen, temporarily change your Country and Region to e.g. Belgium (make sure not to change the section for National Identification, but really just the Country and Region).
+4. Save it.
+5. Log out and log back in.
+6. Accept any new terms
+7. Change your country back to your country
+8. Reload your Cupra integration in HA.
+
+[!image](login_language.png)
+
+Thanks to user @joostiphone for this hint!
+
 ## Tested Cars
 
 * Cupra Born 2021-
