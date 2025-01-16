@@ -62,7 +62,7 @@ It's important that the username being used to login to this integration has alr
 7. Change your country back to your country
 8. Reload your Cupra integration in HA.
 
-[!image](login_language.png)
+![image](login_language.png)
 
 Thanks to user @joostiphone for this hint!
 
