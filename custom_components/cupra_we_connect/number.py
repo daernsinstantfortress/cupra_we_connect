@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from weconnect_cupra import weconnect_cupra
 
-from homeassistant.components.number import NumberEntity
+from homeassistant.components.number import NumberEntity, NumberDeviceClass
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
@@ -15,7 +15,7 @@ from . import (
 )
 from .const import DOMAIN
 
-from homeassistant.const import UnitOfTemperature
+from homeassistant.const import UnitOfTemperature, PERCENTAGE
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Add buttons for passed config_entry in HA."""
@@ -55,6 +55,8 @@ class TargetSoCNumber(VolkswagenIDBaseEntity, NumberEntity):
         self._attr_native_min_value = 10
         self._attr_native_max_value = 100
         self._attr_native_step = 10
+        self._attr_device_class = NumberDeviceClass.BATTERY
+        self._attr_native_unit_of_measurement = PERCENTAGE
 
     @property
     def native_value(self) -> float | None:
@@ -97,8 +99,9 @@ class TargetClimateNumber(VolkswagenIDBaseEntity, NumberEntity):
         self._attr_native_min_value = 10
         self._attr_native_max_value = 30
         self._attr_native_step = 0.5
+        self._attr_device_class = NumberDeviceClass.TEMPERATURE
         self._attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
-
+        
     @property
     def native_value(self) -> float | None:
         """Return the value reported by the number."""
