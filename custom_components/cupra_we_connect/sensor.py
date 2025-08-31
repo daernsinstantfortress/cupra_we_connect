@@ -208,7 +208,7 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["measurements"][
             "odometerStatus"
-        ].odometer.value,
+        ].odometer.value if "measurements" in data else None,
     ),
     VolkswagenIdEntityDescription(
         name="Odometer in Miles",
@@ -217,7 +217,7 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["measurements"][
             "odometerStatus"
-        ].odometer.value,
+        ].odometer.value if "measurements" in data else None,
     ),
 )
 
