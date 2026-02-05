@@ -13,25 +13,7 @@ from homeassistant.components.sensor import (
     SensorStateClass,
     SensorDeviceClass,
 )
-from homeassistant.const import (
-#     DEVICE_CLASS_BATTERY,
-#     DEVICE_CLASS_POWER,
-#     DEVICE_CLASS_TEMPERATURE,
-#     LENGTH_KILOMETERS,
-#     LENGTH_MILES,
-    PERCENTAGE,
-#     POWER_KILO_WATT,
-#     SPEED_KILOMETERS_PER_HOUR,
-#     TEMP_CELSIUS,
-#     TEMP_FAHRENHEIT,
-#     TIME_DAYS,
-#     TIME_MINUTES,
-    UnitOfLength,
-    UnitOfPower,
-    UnitOfTime,
-    UnitOfTemperature,
-    UnitOfSpeed,
-)
+from homeassistant.const import PERCENTAGE, UnitOfLength, UnitOfPower, UnitOfTime, UnitOfTemperature, UnitOfSpeed
 from homeassistant.helpers.typing import StateType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
@@ -47,23 +29,18 @@ class VolkswagenIdEntityDescription(SensorEntityDescription):
 
 
 SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
-    # This is a string, not an number
     VolkswagenIdEntityDescription(
         key="climatisationState",
         name="Climatisation State",
         state_class=None,
-        value=lambda data: data["climatisation"][
-            "climatisationStatus"
-        ].climatisationState.value,
+        value=lambda data: data["climatisation"]["climatisationStatus"].climatisationState.value,
     ),
     VolkswagenIdEntityDescription(
         key="remainingClimatisationTime_min",
         name="Remaining Climatisation Time",
         native_unit_of_measurement=UnitOfTime.MINUTES,
         state_class=SensorStateClass.MEASUREMENT,
-        value=lambda data: data["climatisation"][
-            "climatisationStatus"
-        ].remainingClimatisationTime_min.value,
+        value=lambda data: data["climatisation"]["climatisationStatus"].remainingClimatisationTime_min.value,
     ),
     VolkswagenIdEntityDescription(
         key="targetTemperature_C",
@@ -71,9 +48,7 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
         device_class=SensorDeviceClass.TEMPERATURE,
         native_unit_of_measurement=UnitOfTemperature.CELSIUS,
         state_class=SensorStateClass.MEASUREMENT,
-        value=lambda data: data["climatisation"][
-            "climatisationSettings"
-        ].targetTemperature_C.value,
+        value=lambda data: data["climatisation"]["climatisationSettings"].targetTemperature_C.value,
     ),
     VolkswagenIdEntityDescription(
         key="targetTemperature_F",
@@ -81,20 +56,8 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
         device_class=SensorDeviceClass.TEMPERATURE,
         native_unit_of_measurement=UnitOfTemperature.FAHRENHEIT,
         state_class=SensorStateClass.MEASUREMENT,
-        value=lambda data: data["climatisation"][
-            "climatisationSettings"
-        ].targetTemperature_F.value,
+        value=lambda data: data["climatisation"]["climatisationSettings"].targetTemperature_F.value,
     ),
-    # Not available from Cupra
-    # VolkswagenIdEntityDescription(
-    #     key="unitInCar",
-    #     name="Unit In car",
-    #     state_class=None,
-    #     value=lambda data: data["climatisation"][
-    #         "climatisationSettings"
-    #     ].unitInCar.value,
-    # ),
-    # This is a string, not an number
     VolkswagenIdEntityDescription(
         key="chargingState",
         name="Charging State",
@@ -107,11 +70,8 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
         name="Remaining Charging Time",
         native_unit_of_measurement=UnitOfTime.MINUTES,
         state_class=SensorStateClass.MEASUREMENT,
-        value=lambda data: data["charging"][
-            "chargingStatus"
-        ].remainingChargingTimeToComplete_min.value,
+        value=lambda data: data["charging"]["chargingStatus"].remainingChargingTimeToComplete_min.value,
     ),
-    # This is a string, not an number
     VolkswagenIdEntityDescription(
         key="chargeMode",
         name="Charging Mode",
@@ -134,28 +94,23 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
         state_class=SensorStateClass.MEASUREMENT,
         value=lambda data: data["charging"]["chargingStatus"].chargeRate_kmph.value,
     ),
-    # Not available for Cupra ?
     VolkswagenIdEntityDescription(
         key="chargingSettings",
         name="Charging Settings",
         state_class=None,
         value=lambda data: data["charging"]["chargingStatus"].chargingSettings.value,
     ),
-    # This is a string, not an number
     VolkswagenIdEntityDescription(
         key="chargeType",
         name="Charge Type",
         state_class=None,
         value=lambda data: data["charging"]["chargingStatus"].chargeType.value,
     ),
-    # This is a string, not an number
     VolkswagenIdEntityDescription(
         key="maxChargeCurrentAC",
         name="Max Charge Current AC",
         state_class=None,
-        value=lambda data: data["charging"][
-            "chargingSettings"
-        ].maxChargeCurrentAC.value,
+        value=lambda data: data["charging"]["chargingSettings"].maxChargeCurrentAC.value,
     ),
     VolkswagenIdEntityDescription(
         key="targetSOC_pct",
@@ -178,46 +133,28 @@ SENSORS: tuple[VolkswagenIdEntityDescription, ...] = (
         key="cruisingRangeElectric_km",
         native_unit_of_measurement=UnitOfLength.KILOMETERS,
         state_class=SensorStateClass.MEASUREMENT,
-        value=lambda data: data["charging"][
-            "batteryStatus"
-        ].cruisingRangeElectric_km.value,
+        value=lambda data: data["charging"]["batteryStatus"].cruisingRangeElectric_km.value,
     ),
     VolkswagenIdEntityDescription(
         name="Range in Miles",
         key="cruisingRangeElectric_mi",
         native_unit_of_measurement=UnitOfLength.MILES,
         state_class=SensorStateClass.MEASUREMENT,
-        value=lambda data: data["charging"][
-            "batteryStatus"
-        ].cruisingRangeElectric_km.value,
+        value=lambda data: data["charging"]["batteryStatus"].cruisingRangeElectric_km.value,
     ),
-    # Not supported by Cupra
-    # VolkswagenIdEntityDescription(
-    #     name="Health Inspection",
-    #     key="inspectionDue",
-    #     native_unit_of_measurement=TIME_DAYS,
-    #     state_class=SensorStateClass.MEASUREMENT,
-    #     value=lambda data: data["vehicleHealthInspection"][
-    #         "maintenanceStatus"
-    #     ].inspectionDue_days.value if "vehicleHealthInspection" in data else None,
-    # ),
     VolkswagenIdEntityDescription(
         name="Odometer in Kilometers",
         key="odometer_km",
         native_unit_of_measurement=UnitOfLength.KILOMETERS,
         state_class=SensorStateClass.MEASUREMENT,
-        value=lambda data: data["measurements"][
-            "odometerStatus"
-        ].odometer.value,
+        value=lambda data: data["measurements"]["odometerStatus"].odometer.value,
     ),
     VolkswagenIdEntityDescription(
         name="Odometer in Miles",
         key="odometer_mi",
         native_unit_of_measurement=UnitOfLength.MILES,
         state_class=SensorStateClass.MEASUREMENT,
-        value=lambda data: data["measurements"][
-            "odometerStatus"
-        ].odometer.value,
+        value=lambda data: data["measurements"]["odometerStatus"].odometer.value,
     ),
 )
 
@@ -228,7 +165,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     coordinator = hass.data[DOMAIN][config_entry.entry_id + "_coordinator"]
 
     # Fetch initial data so we have data when entities subscribe
-    await coordinator.async_config_entry_first_refresh()
+    await coordinator.async_refresh()
 
     entities: list[VolkswagenIDSensor] = []
 
