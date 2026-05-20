@@ -15,7 +15,7 @@ from homeassistant.data_entry_flow import FlowResult
 from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.selector import selector
 
-from .const import DOMAIN
+from .const import DOMAIN, apply_app_market_header
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -48,6 +48,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
     # TODO: ADD Validation on credentials
 
     await hass.async_add_executor_job(we_connect.login)
+    apply_app_market_header(we_connect)
     await hass.async_add_executor_job(we_connect.update)
 
     # vin = next(iter(we_connect.vehicles.items()))[0]
